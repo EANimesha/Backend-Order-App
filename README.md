@@ -6,7 +6,7 @@ Database is Mongo Db Atlas
 
 ## Todo
 
-- [ ] As a user I need to search for products by giving product names.
+- [x] As a user I need to search for products by giving product names.
 - [ ] As a user I need to select a product category and view related products.
 - [ ] As a user I need to select a product and view its details.
 - [ ] As a user I need to create new carts
