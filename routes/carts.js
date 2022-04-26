@@ -1,10 +1,20 @@
 const express = require('express');
 const Cart = require('../models/Cart')
+var ObjectId = require('mongodb').ObjectId;
 const carts=express.Router();
 
 
 carts.get('/',(req,res)=>{
     Cart.find()
+    .then(i=>res.json(i))
+    .catch(err=>{
+        res.send('error '+err)
+    })
+})
+
+carts.get('/:id',(req,res)=>{
+    const {id} = req.params;
+    Cart.findOne({_id:ObjectId(id)})
     .then(i=>res.json(i))
     .catch(err=>{
         res.send('error '+err)

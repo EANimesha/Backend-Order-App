@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 var products= require('./routes/products')
 var carts = require('./routes/carts')
+var cartItems = require('./routes/cartItems')
 
 const PORT = process.env.PORT || 5000
 
@@ -24,6 +25,7 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use('/products',products);
 app.use('/carts',carts);
+app.use('/cart-items',cartItems);
 
 app.get('/',(req,res)=>{
     res.send('API running')
