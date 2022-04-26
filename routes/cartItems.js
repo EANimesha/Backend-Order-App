@@ -6,7 +6,7 @@ const cartItems=express.Router();
 //get cart items by cart id
 cartItems.get('/:id',(req,res)=>{
     const {id} = req.params;
-    CartItem.findOne({cart_id:ObjectId(id)})
+    CartItem.find({cart_id:ObjectId(id)})
     .then(i=>res.json(i))
     .catch(err=>{
         res.send('error '+err)

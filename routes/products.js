@@ -32,27 +32,27 @@ products.get('/',(req,res)=>{
     }
 })
 
-// //get by product Id
-// products.get('/:id',(req,res)=>{
-//     const {id} = req.params;
+//get by product Id
+products.get('/:id',(req,res)=>{
+    const {id} = req.params;
 
-//     Product.aggregate([
-//         {$match:{_id:ObjectId(id)}},
-//         {$lookup:
-//             {
-//                 from:'producers',
-//                 localField:'producerId',
-//                 foreignField:'pid',
-//                 as: 'producerdetails',
-//             }
-//         },
-//         { $project: {producerId: 0 } },
-//     ])
-//     .then(request=>res.json(request))
-//     .catch(err=>{
-//         res.send('error '+err)
-//     })
-// })
+    Product.aggregate([
+        {$match:{_id:ObjectId(id)}},
+        // {$lookup:
+        //     {
+        //         from:'producers',
+        //         localField:'producerId',
+        //         foreignField:'pid',
+        //         as: 'producerdetails',
+        //     }
+        // },
+        // { $project: {producerId: 0 } },
+    ])
+    .then(request=>res.json(request))
+    .catch(err=>{
+        res.send('error '+err)
+    })
+})
 
 
 
