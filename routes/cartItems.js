@@ -55,5 +55,18 @@ cartItems.post('/:id',(req,res)=>{
     })
 })
 
+//delete item from cart
+
+cartItems.delete('/',(req,res)=>{
+    const {cart_id, product_id} = req.body;
+    CartItem.deleteOne({cart_id:cart_id, product_id:product_id})
+    .then(()=>{
+            res.json('Deleted cart item'+product_id)
+    })
+    .catch(err=>{
+        res.json('error: '+err)
+    })
+})
+
 
 module.exports= cartItems;
