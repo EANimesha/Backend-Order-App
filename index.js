@@ -3,9 +3,11 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 var cors=require('cors');
+const bodyParser = require('body-parser');
 
 
 var products= require('./routes/products')
+var carts = require('./routes/carts')
 
 const PORT = process.env.PORT || 5000
 
@@ -19,7 +21,9 @@ mongoose
 })
 
 app.use(cors())
+app.use(bodyParser.json());
 app.use('/products',products);
+app.use('/carts',carts);
 
 app.get('/',(req,res)=>{
     res.send('API running')
