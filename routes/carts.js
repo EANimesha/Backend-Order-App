@@ -1,5 +1,6 @@
 const express = require('express');
-const Cart = require('../models/Cart')
+const Cart = require('../models/Cart');
+const CartItem = require('../models/CartItem');
 var ObjectId = require('mongodb').ObjectId;
 const carts=express.Router();
 
@@ -46,5 +47,21 @@ carts.post('/',(req,res)=>{
     })
 })
 
+carts.delete('/:id',(req,res)=>{
+    const {id} = req.params;
+    Cart.deleteOne({_id:id})
+    .then(()=>{
+        CartItem.deleteMany({cart_id:id})
+        .then(()=>{
+            res.json('Deleted cart '+id)
+        })
+        .catch(err=>{
+            res.json('error: '+err)
+        })
+    })
+    .catch(err=>{
+        res.json('error: '+err)
+    })
+})
 
 module.exports= carts;
