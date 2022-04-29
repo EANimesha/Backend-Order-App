@@ -54,7 +54,16 @@ products.get('/:id',(req,res)=>{
     })
 })
 
+//search product
 
-
+products.get('/search',(req,res)=>{
+    console.log(req.body)
+    const {filter} = req.body;
+    Product.find({ $text: { $search: "Cake" } })
+    .then(request=>res.json(request))
+    .catch(err=>{
+        res.send('error '+err)
+    })
+})
 
 module.exports= products;
